@@ -42,3 +42,26 @@ System.debug(sum);
 
 Double sum = SoapCallouts.getDivide(10, 20);
 System.debug(sum);
+
+
+
+jsonString:
+{
+	"states": 56,
+	"positive": 28756489,
+	"negative": 74582825,
+	"pending": 11808,
+}
+
+=> deserialize(jsonString, CovidWrapper.class);
+
+public class CovidWrapper {
+    public Integer states = 56;
+    public Integer positive = 28756489;
+    public Integer negative = 74582825;
+    public Integer pending = 11808;
+}
+
+Covid_Info__c info = new Covid_Info__c();
+info.positive__c = 
+
