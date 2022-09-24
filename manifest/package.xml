@@ -46,6 +46,8 @@
         <members>Contact</members>
         <members>Opportunity</members>
         <members>Order_Event__e</members>
+        <members>Posts__c</members>
+        <members>Covid_Info__c</members>
         <name>CustomObject</name>
     </types>
     <version>55.0</version>

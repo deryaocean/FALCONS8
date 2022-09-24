@@ -7,6 +7,10 @@
         <locationY>695</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Log_Exception</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -86,6 +90,9 @@
         <connector>
             <targetReference>Populate_Recipients</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Log_Exception</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>ActivityDate</field>
             <value>
@@ -173,6 +180,37 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Log_Exception</name>
+        <label>Log Exception</label>
+        <locationX>704</locationX>
+        <locationY>455</locationY>
+        <flowName>Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>ErrorRecords</name>
+            <value>
+                <elementReference>$Flow.CurrentRecord</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ExceptionMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ExceptionType</name>
+            <value>
+                <elementReference>$Flow.CurrentStage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>TargetName</name>
+            <value>
+                <stringValue>Opportunity - After Insert/Update</stringValue>
+            </value>
+        </inputAssignments>
+    </subflows>
     <variables>
         <name>RecipientIds</name>
         <dataType>String</dataType>

@@ -7,6 +7,10 @@
         <locationY>455</locationY>
         <actionName>NewOpportunity</actionName>
         <actionType>quickAction</actionType>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Log_Exception</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>AccountId</name>
@@ -75,6 +79,9 @@
         <connector>
             <targetReference>New_Opportunity</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Log_Exception</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>AccountId</field>
@@ -111,4 +118,35 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Log_Exception</name>
+        <label>Log Exception</label>
+        <locationX>704</locationX>
+        <locationY>455</locationY>
+        <flowName>Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>ErrorRecords</name>
+            <value>
+                <elementReference>$Flow.CurrentRecord</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ExceptionMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ExceptionType</name>
+            <value>
+                <elementReference>$Flow.CurrentStage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>TargetName</name>
+            <value>
+                <stringValue>Account - After Insert/Update</stringValue>
+            </value>
+        </inputAssignments>
+    </subflows>
 </Flow>
