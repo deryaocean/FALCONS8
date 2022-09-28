@@ -43,6 +43,10 @@ System.debug(sum);
 Double sum = SoapCallouts.getDivide(10, 20);
 System.debug(sum);
 
+String url = System.URL.getSalesforceBaseUrl().toExternalForm();
+System.debug(url);
+System.debug(UserInfo.getSessionId().subString(1));
+
 
 
 jsonString:
