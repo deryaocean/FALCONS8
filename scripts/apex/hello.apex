@@ -13,3 +13,9 @@ List<Id> accountIds = new List<Id>{'001jwhfjwh','001wkruwwjfhw','001jwhjenfneif'
 List<Account> accounts = [SELECT Id, Name, Type, Industry
                             FROM Account
                             WHERE Id IN :accountIds];
+
+
+//test
+List<Account> accounts = [SELECT Id FROM Account WHERE Name LIKE '%xyz%'];
+System.debug(accounts.size());
+System.debug(accounts);
